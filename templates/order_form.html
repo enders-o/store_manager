@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="py-2">BCIT Manage Orders</h1>
+<h2>Find Order</h2>
+<form action="/search_name" method="post">
+    <div class="form-group">
+        <select name="search_name" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <option selected disabled>Customer Name</option>
+            {% for customer in customers %}
+            <option value="{{ customer.name }}">{{ customer.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+<h2>Process Order</h2>
+<form action="/process_order" method="post">
+    <div class="form-group">
+        <select name="id" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <option selected disabled>Order ID</option>
+            {% for order in customers %}
+            {%if order.completed == false%}
+            <option value="{{ order.id }}">{{ order.id }}</option>
+            {%endif%}
+            {% endfor %}
+        </select>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+<h2>Add Order</h2>
+<form action="/create_order" method="post">
+    <div class="form-group">
+        <label for="customer_name">Customer Name</label>
+        <input type="text" class="form-control" name="customer_name" required>
+    </div>
+    <div class="form-group">
+        <label for="customer_address">Customer Address</label>
+        <input type="text" class="form-control" name="customer_address" required>
+    </div>
+    <!-- send to different form after customer name and address are submitted,
+    create a new product, continue until finished button is clicked -->
+    <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+{% endblock %}

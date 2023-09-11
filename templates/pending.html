@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="py-2">BCIT Store Pending Orders</h1>
+<table class="table table-highlighted">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Customer Name</th>
+            <th>Customer Address</th>
+            <th>Time Recieved</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            {%if order.completed == false%}
+            <td>{{ order.id }}</td>
+            <td>{{ order.name }}</td>
+            <td>{{ order.address }}</td>
+            <td>{{ order.recieved_date.strftime("%Y-%m-%d %H:%M:%S") }}</td>
+            {%endif%}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

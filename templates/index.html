@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="py-2">BCIT Store</h1>
+<table class="table table-highlighted">
+    <thead>
+        <tr>
+            <th><a href="{{ url_for('sort_name', order='asc') }}"><i class="bi bi-arrow-up"></i><a href="{{ url_for('sort_name', order='desc') }}"><i class="bi bi-arrow-down"></i></a>Name</th>
+            <th><a href="{{ url_for('sort_price', order='asc') }}"><i class="bi bi-arrow-up"></i></a><a href="{{ url_for('sort_price', order='desc') }}"><i class="bi bi-arrow-down"></i></a>Price</th>
+            <th><a href="{{ url_for('sort_quantity', order='asc')}}"><i class="bi bi-arrow-up"></i></a><a href="{{ url_for('sort_quantity', order='desc')}}"><i class="bi bi-arrow-down"></i></a>Quantity</th>
+        </tr>   
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.quantity }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
